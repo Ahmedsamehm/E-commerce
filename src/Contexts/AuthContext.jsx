@@ -4,16 +4,7 @@ import useAuth from "../Hooks/useAuth";
 export const AuthContext = createContext();
 
 export default function AuthContextProvider({ children }) {
-  const {
-    RegisterUser,
-    LoginUser,
-    userToken,
-    handelLogout,
-    toastMessage,
-    showToast,
-    isLoading,
-    userID,
-  } = useAuth();
+  const { RegisterUser, LoginUser, userToken, handelLogout, toastMessage, showToast, isLoading, userID } = useAuth();
 
   const value = useMemo(
     () => ({
@@ -27,16 +18,7 @@ export default function AuthContextProvider({ children }) {
       isLoading,
       userID,
     }),
-    [
-      RegisterUser,
-      LoginUser,
-      userToken,
-      handelLogout,
-      toastMessage,
-      showToast,
-      isLoading,
-      userID,
-    ]
+    [RegisterUser, LoginUser, userToken, handelLogout, toastMessage, showToast, isLoading, userID]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

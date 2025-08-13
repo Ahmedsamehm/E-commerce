@@ -4,23 +4,17 @@ import { useJwt } from "react-jwt";
 import useTostMsg from "./useTostMsg";
 
 export default function useAuth() {
-  const [userToken, setUserToken] = useState(
-    localStorage.getItem("token") || null
-  );
+  const [userToken, setUserToken] = useState(localStorage.getItem("token") || null);
   const { decodedToken, isExpired } = useJwt(userToken);
   const userID = decodedToken?.id;
 
-  const { DisplayTostMsg, toastMessage, showToast, setIsLoading, isLoading } =
-    useTostMsg();
+  const { DisplayTostMsg, toastMessage, showToast, setIsLoading, isLoading } = useTostMsg();
 
   const LoginUser = useCallback(
     async (values, navigate) => {
       setIsLoading(true);
       try {
-        const { data } = await axios.post(
-          "https://ecommerce.routemisr.com/api/v1/auth/signin",
-          values
-        );
+        const { data } = await axios.post("https://ecommerce.routemisr.com/api/v1/auth/signin", values);
 
         localStorage.setItem("token", data?.token);
         setUserToken(data?.token);
@@ -44,10 +38,7 @@ export default function useAuth() {
     async (values, Navigate) => {
       setIsLoading(true);
       try {
-        const { data } = await axios.post(
-          "https://ecommerce.routemisr.com/api/v1/auth/signup",
-          values
-        );
+        const { data } = await axios.post("https://ecommerce.routemisr.com/api/v1/auth/signup", values);
 
         if (data.token) {
           localStorage.setItem("token", data.token);
