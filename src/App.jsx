@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useMemo } from "react";
-import { HashRouter, Routes, Route } from "react-router-dom"; // تم التعديل هنا
+import { HashRouter, Routes, Route } from "react-router-dom";
 import Layout from "./Components/Layout";
 import AuthContextProvider from "./Contexts/AuthContext";
 import ProductsContextProvider from "./Contexts/ProductsContext";
